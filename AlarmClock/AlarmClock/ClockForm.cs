@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Text;
+using System.Runtime.InteropServices;
 
 namespace AlarmClock
 {
@@ -14,6 +16,7 @@ namespace AlarmClock
     {
         private static Timer timerClock = new Timer();
         private DateTime currentTime;
+        private PrivateFontCollection fontCol;
 
         public ClockForm()
         {
@@ -22,15 +25,41 @@ namespace AlarmClock
             dateTimePickerAlarm.ShowUpDown = true;
             dateTimePickerAlarm.CustomFormat = "HH:mm dd.MM.yyyy";
 
+            initCustomLabelFont();
 
-            currentTime = DateTime.Now;
+            
+            
             timeLabel.Text = currentTime.ToString("HH:mm:ss");
             dateLabel.Text = currentTime.ToString("dd.MM.yyyy");
 
+            currentTime = DateTime.Now;
             timerClock.Interval = 1000;
             timerClock.Tick += new EventHandler(timerClock_Tick);
             timerClock.Start();
-            
+
+        }
+
+        public void initCustomLabelFont()
+        {
+            PrivateFontCollection fontCol = new PrivateFontCollection();
+            //Create your private font collection object.
+
+            //Select your font from the resources.
+            //My font here is "Digireu.ttf"
+            int fontLength = AlarmClock.Properties.Resources.DSDIGI.Length;
+
+            // create a buffer to read in to
+            byte[] fontdata = Properties.Resources.DSDIGI;
+
+            // create an unsafe memory block for the font data
+            System.IntPtr data = Marshal.AllocCoTaskMem(fontLength);
+
+            // copy the bytes to the unsafe memory block
+            Marshal.Copy(fontdata, 0, data, fontLength);
+
+            // pass the font to the font collection
+            fontCol.AddMemoryFont(data, fontLength);
+            timeLabel.Font = new Font(fontCol.Families[0], timeLabel.Font.Size);
         }
 
         public void timerClock_Tick(object sender, EventArgs e)
@@ -60,7 +89,7 @@ namespace AlarmClock
         private void addAlarmButton_Click(object sender, EventArgs e)
         {
             DateTime date = dateTimePickerAlarm.Value;
-            
+
             alarmsCheckedListBox.Items.Insert(0, date);
 
         }
@@ -71,7 +100,7 @@ namespace AlarmClock
         }
 
         private void removeAlarmsButton_Click(object sender, EventArgs e)
-        {        
+        {
             foreach (var item in alarmsCheckedListBox.CheckedItems.OfType<DateTime>().ToList())
             {
                 alarmsCheckedListBox.Items.Remove(item);
@@ -82,7 +111,7 @@ namespace AlarmClock
                 alarmsCheckedListBox.SetItemCheckState(i, CheckState.Unchecked);
             }
         }
-        
+
 
     }
 }

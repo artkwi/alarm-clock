@@ -31,7 +31,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanelClock = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.timeLabel = new System.Windows.Forms.Label();
+            this.dateLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -40,16 +42,14 @@
             this.alarmsCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.removeAlarmsButton = new System.Windows.Forms.Button();
-            this.dateLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanelClock.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -65,14 +65,16 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.Black;
             this.tabPage1.Controls.Add(this.tableLayoutPanelClock);
+            this.tabPage1.Font = new System.Drawing.Font("Dubai", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tabPage1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(776, 435);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Clock";
-            this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // tableLayoutPanelClock
@@ -90,26 +92,54 @@
             this.tableLayoutPanelClock.Size = new System.Drawing.Size(770, 429);
             this.tableLayoutPanelClock.TabIndex = 0;
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.timeLabel, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.dateLabel, 1, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(764, 208);
+            this.tableLayoutPanel4.TabIndex = 2;
+            // 
             // timeLabel
             // 
             this.timeLabel.AutoSize = true;
+            this.timeLabel.Font = new System.Drawing.Font("Harrington", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.timeLabel.Location = new System.Drawing.Point(3, 0);
             this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(52, 13);
+            this.timeLabel.Size = new System.Drawing.Size(312, 90);
             this.timeLabel.TabIndex = 0;
             this.timeLabel.Text = "timeLabel";
-            //this.timeLabel.Click += new System.EventHandler(this.timeLabel_Click);
+            this.timeLabel.UseCompatibleTextRendering = true;
+            // 
+            // dateLabel
+            // 
+            this.dateLabel.AutoSize = true;
+            this.dateLabel.Location = new System.Drawing.Point(385, 0);
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.Size = new System.Drawing.Size(325, 75);
+            this.dateLabel.TabIndex = 1;
+            this.dateLabel.Text = "dateLabel";
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.Black;
             this.tabPage2.Controls.Add(this.tableLayoutPanel1);
+            this.tabPage2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(776, 435);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Alarm";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -162,12 +192,12 @@
             this.addAlarmButton.UseVisualStyleBackColor = true;
             this.addAlarmButton.Click += new System.EventHandler(this.addAlarmButton_Click);
             // 
-            // AlarmsCheckedListBox
+            // alarmsCheckedListBox
             // 
             this.alarmsCheckedListBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.alarmsCheckedListBox.FormattingEnabled = true;
             this.alarmsCheckedListBox.Location = new System.Drawing.Point(322, 3);
-            this.alarmsCheckedListBox.Name = "AlarmsCheckedListBox";
+            this.alarmsCheckedListBox.Name = "alarmsCheckedListBox";
             this.alarmsCheckedListBox.Size = new System.Drawing.Size(313, 214);
             this.alarmsCheckedListBox.TabIndex = 1;
             // 
@@ -197,37 +227,11 @@
             this.removeAlarmsButton.UseVisualStyleBackColor = true;
             this.removeAlarmsButton.Click += new System.EventHandler(this.removeAlarmsButton_Click);
             // 
-            // dateLabel
-            // 
-            this.dateLabel.AutoSize = true;
-            this.dateLabel.Location = new System.Drawing.Point(385, 0);
-            this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(54, 13);
-            this.dateLabel.TabIndex = 1;
-            this.dateLabel.Text = "dateLabel";
-            //this.dateLabel.Click += new System.EventHandler(this.dateLabel_Click);
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.timeLabel, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.dateLabel, 1, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(764, 208);
-            this.tableLayoutPanel4.TabIndex = 2;
-            // 
             // ClockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.tabControl1);
             this.Name = "ClockForm";
@@ -236,12 +240,12 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tableLayoutPanelClock.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
