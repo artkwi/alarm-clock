@@ -40,8 +40,16 @@ namespace AlarmClock
         }
 
         private void removeAlarmsButton_Click(object sender, EventArgs e)
-        {
-            AlarmsCheckedListBox.Items.RemoveAt(0);
+        {        
+            foreach (var item in AlarmsCheckedListBox.CheckedItems.OfType<DateTime>().ToList())
+            {
+                AlarmsCheckedListBox.Items.Remove(item);
+            }
+
+            foreach (int i in AlarmsCheckedListBox.CheckedIndices)
+            {
+                AlarmsCheckedListBox.SetItemCheckState(i, CheckState.Unchecked);
+            }
         }
     }
 }
