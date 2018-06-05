@@ -12,13 +12,44 @@ namespace AlarmClock
 {
     public partial class ClockForm : Form
     {
+        private static Timer timerClock = new Timer();
+        private DateTime currentTime;
+
         public ClockForm()
         {
             InitializeComponent();
             dateTimePickerAlarm.Format = DateTimePickerFormat.Custom;
             dateTimePickerAlarm.ShowUpDown = true;
             dateTimePickerAlarm.CustomFormat = "HH:mm dd.MM.yyyy";
+
+
+            currentTime = DateTime.Now;
+            timeLabel.Text = currentTime.ToString("HH:mm:ss");
+            dateLabel.Text = currentTime.ToString("dd.MM.yyyy");
+
+            timerClock.Interval = 1000;
+            timerClock.Tick += new EventHandler(timerClock_Tick);
+            timerClock.Start();
             
+        }
+
+        public void timerClock_Tick(object sender, EventArgs e)
+        {
+            currentTime = DateTime.Now;
+            timeLabel.Text = currentTime.ToString("HH:mm:ss");
+            dateLabel.Text = currentTime.ToString("dd.MM.yyyy");
+
+            // compare current time with alarms list
+            for (int i = 0; i < alarmsCheckedListBox.Items.Count; i++)
+            {
+                String tempDateAlarm = Convert.ToDateTime(alarmsCheckedListBox.Items[i]).ToString("dd.MM.yyyy HH:mm");
+                String tempDateNow = currentTime.ToString("dd.MM.yyyy HH:mm");
+                int compareDateResult = String.Compare(tempDateAlarm, tempDateNow, true);
+                if (compareDateResult == 0)
+                {
+                    Console.WriteLine("Alarm");
+                }
+            }
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -29,8 +60,8 @@ namespace AlarmClock
         private void addAlarmButton_Click(object sender, EventArgs e)
         {
             DateTime date = dateTimePickerAlarm.Value;
-            Console.WriteLine("siema" + date);
-            AlarmsCheckedListBox.Items.Insert(0, date);
+            
+            alarmsCheckedListBox.Items.Insert(0, date);
 
         }
 
@@ -41,15 +72,17 @@ namespace AlarmClock
 
         private void removeAlarmsButton_Click(object sender, EventArgs e)
         {        
-            foreach (var item in AlarmsCheckedListBox.CheckedItems.OfType<DateTime>().ToList())
+            foreach (var item in alarmsCheckedListBox.CheckedItems.OfType<DateTime>().ToList())
             {
-                AlarmsCheckedListBox.Items.Remove(item);
+                alarmsCheckedListBox.Items.Remove(item);
             }
 
-            foreach (int i in AlarmsCheckedListBox.CheckedIndices)
+            foreach (int i in alarmsCheckedListBox.CheckedIndices)
             {
-                AlarmsCheckedListBox.SetItemCheckState(i, CheckState.Unchecked);
+                alarmsCheckedListBox.SetItemCheckState(i, CheckState.Unchecked);
             }
         }
+        
+
     }
 }
