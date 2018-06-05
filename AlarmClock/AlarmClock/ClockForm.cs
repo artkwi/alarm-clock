@@ -7,18 +7,80 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Text;
+using System.Runtime.InteropServices;
 
 namespace AlarmClock
 {
     public partial class ClockForm : Form
     {
+        private static Timer timerClock = new Timer();
+        private DateTime currentTime;
+        private PrivateFontCollection fontCol;
+
         public ClockForm()
         {
             InitializeComponent();
             dateTimePickerAlarm.Format = DateTimePickerFormat.Custom;
             dateTimePickerAlarm.ShowUpDown = true;
             dateTimePickerAlarm.CustomFormat = "HH:mm dd.MM.yyyy";
+
+            initCustomLabelFont();
+
             
+            
+            timeLabel.Text = currentTime.ToString("HH:mm:ss");
+            dateLabel.Text = currentTime.ToString("dd.MM.yyyy");
+
+            currentTime = DateTime.Now;
+            timerClock.Interval = 1000;
+            timerClock.Tick += new EventHandler(timerClock_Tick);
+            timerClock.Start();
+
+        }
+
+        public void initCustomLabelFont()
+        {
+            //Create your private font collection object.
+            PrivateFontCollection fontCol = new PrivateFontCollection();
+
+            //Select your font from the resources.
+            //My font here is "Digireu.ttf"
+            int fontLength = AlarmClock.Properties.Resources.DSDIGI.Length;
+
+            // create a buffer to read in to
+            byte[] fontdata = Properties.Resources.DSDIGI;
+
+            // create an unsafe memory block for the font data
+            System.IntPtr data = Marshal.AllocCoTaskMem(fontLength);
+
+            // copy the bytes to the unsafe memory block
+            Marshal.Copy(fontdata, 0, data, fontLength);
+
+            // pass the font to the font collection
+            fontCol.AddMemoryFont(data, fontLength);
+            timeLabel.Font = new Font(fontCol.Families[0], timeLabel.Font.Size);
+            dateLabel.Font = new Font(fontCol.Families[0], dateLabel.Font.Size);
+        }
+
+        public void timerClock_Tick(object sender, EventArgs e)
+        {
+            currentTime = DateTime.Now;
+            timeLabel.Text = currentTime.ToString("HH:mm:ss");
+            dateLabel.Text = currentTime.ToString("dd.MM.yyyy");
+
+            // compare current time with alarms list
+            for (int i = 0; i < alarmsCheckedListBox.Items.Count; i++)
+            {
+                String tempDateAlarm = Convert.ToDateTime(alarmsCheckedListBox.Items[i]).ToString("dd.MM.yyyy HH:mm");
+                String tempDateNow = currentTime.ToString("dd.MM.yyyy HH:mm");
+                int compareDateResult = String.Compare(tempDateAlarm, tempDateNow, true);
+                if (compareDateResult == 0)
+                {
+                    Console.WriteLine("Alarm");
+                    System.Media.SystemSounds.Beep.Play();
+                }
+            }
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -29,8 +91,8 @@ namespace AlarmClock
         private void addAlarmButton_Click(object sender, EventArgs e)
         {
             DateTime date = dateTimePickerAlarm.Value;
-            Console.WriteLine("siema" + date);
-            AlarmsCheckedListBox.Items.Insert(0, date);
+
+            alarmsCheckedListBox.Items.Insert(0, date);
 
         }
 
@@ -41,7 +103,17 @@ namespace AlarmClock
 
         private void removeAlarmsButton_Click(object sender, EventArgs e)
         {
-            AlarmsCheckedListBox.Items.RemoveAt(0);
+            foreach (var item in alarmsCheckedListBox.CheckedItems.OfType<DateTime>().ToList())
+            {
+                alarmsCheckedListBox.Items.Remove(item);
+            }
+
+            foreach (int i in alarmsCheckedListBox.CheckedIndices)
+            {
+                alarmsCheckedListBox.SetItemCheckState(i, CheckState.Unchecked);
+            }
         }
+
+
     }
 }
