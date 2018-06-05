@@ -78,6 +78,7 @@ namespace AlarmClock
                 if (compareDateResult == 0)
                 {
                     Console.WriteLine("Alarm");
+                    System.Media.SystemSounds.Beep.Play();
                 }
             }
         }
