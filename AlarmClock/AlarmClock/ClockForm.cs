@@ -41,8 +41,8 @@ namespace AlarmClock
 
         public void initCustomLabelFont()
         {
-            PrivateFontCollection fontCol = new PrivateFontCollection();
             //Create your private font collection object.
+            PrivateFontCollection fontCol = new PrivateFontCollection();
 
             //Select your font from the resources.
             //My font here is "Digireu.ttf"
@@ -60,6 +60,7 @@ namespace AlarmClock
             // pass the font to the font collection
             fontCol.AddMemoryFont(data, fontLength);
             timeLabel.Font = new Font(fontCol.Families[0], timeLabel.Font.Size);
+            dateLabel.Font = new Font(fontCol.Families[0], dateLabel.Font.Size);
         }
 
         public void timerClock_Tick(object sender, EventArgs e)
