@@ -37,9 +37,11 @@ namespace AlarmClock
 
             timeLabel.Text = currentTime.ToString("HH:mm:ss");
             dateLabel.Text = currentTime.ToString("dd.MM.yyyy");
+            timeInAlarmLabel.Text = currentTime.ToString("HH:mm:ss");
+            dateInAlarmlabel.Text = currentTime.ToString("dd.MM.yyyy");
 
             // set font
-            initCustomLabelFont();
+            //initCustomLabelFont();
 
             // display just time in alarms list
             alarmsCheckedListBox.DisplayMember = "alarmTime";
@@ -74,6 +76,8 @@ namespace AlarmClock
             currentTime = DateTime.Now;
             timeLabel.Text = currentTime.ToString("HH:mm:ss");
             dateLabel.Text = currentTime.ToString("dd.MM.yyyy");
+            timeInAlarmLabel.Text = currentTime.ToString("HH:mm:ss");
+            dateInAlarmlabel.Text = currentTime.ToString("dd.MM.yyyy");
 
             // compare current time with alarms list
             for (int i = 0; i < alarmsCheckedListBox.Items.Count; i++)
@@ -141,6 +145,16 @@ namespace AlarmClock
             popupNotifier.ContentText = alarm.Notification;
             popupNotifier.IsRightToLeft = false;
             popupNotifier.Popup();
+        }
+
+        private void tableLayoutPanel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dateLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
