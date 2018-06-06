@@ -88,7 +88,8 @@ namespace AlarmClock
                 int compareDateResult = String.Compare(tempDateAlarm, tempDateNow, true);
                 if (compareDateResult == 0)
                 {
-                    System.Media.SystemSounds.Beep.Play();
+                    // sound
+                    //System.Media.SystemSounds.Beep.Play();
                     // one notification
                     if (tempAlarm.IsNotify)
                     {
@@ -155,6 +156,11 @@ namespace AlarmClock
         private void dateLabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/artkwi/alarm-clock");
         }
     }
 }
