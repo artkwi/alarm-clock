@@ -51,6 +51,7 @@
     <Compile Include="ClockForm.Designer.cs">
       <DependentUpon>ClockForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyAlarm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ClockForm.resx">
