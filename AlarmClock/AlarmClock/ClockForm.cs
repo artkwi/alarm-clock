@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
+using Tulpep.NotificationWindow;
 
 namespace AlarmClock
 {
@@ -18,25 +19,32 @@ namespace AlarmClock
         private DateTime currentTime;
         private PrivateFontCollection fontCol;
 
+
         public ClockForm()
         {
             InitializeComponent();
-            dateTimePickerAlarm.Format = DateTimePickerFormat.Custom;
-            dateTimePickerAlarm.ShowUpDown = true;
-            dateTimePickerAlarm.CustomFormat = "HH:mm dd.MM.yyyy";
 
-            initCustomLabelFont();
-
-            
-            
-            timeLabel.Text = currentTime.ToString("HH:mm:ss");
-            dateLabel.Text = currentTime.ToString("dd.MM.yyyy");
-
+            // timer
             currentTime = DateTime.Now;
             timerClock.Interval = 1000;
             timerClock.Tick += new EventHandler(timerClock_Tick);
             timerClock.Start();
 
+            // custom fields
+            dateTimePickerAlarm.Format = DateTimePickerFormat.Custom;
+            dateTimePickerAlarm.ShowUpDown = true;
+            dateTimePickerAlarm.CustomFormat = "HH:mm dd.MM.yyyy";
+
+            timeLabel.Text = currentTime.ToString("HH:mm:ss");
+            dateLabel.Text = currentTime.ToString("dd.MM.yyyy");
+            timeInAlarmLabel.Text = currentTime.ToString("HH:mm:ss");
+            dateInAlarmlabel.Text = currentTime.ToString("dd.MM.yyyy");
+
+            // set font
+            //initCustomLabelFont();
+
+            // display just time in alarms list
+            alarmsCheckedListBox.DisplayMember = "alarmTime";
         }
 
         public void initCustomLabelFont()
@@ -68,17 +76,26 @@ namespace AlarmClock
             currentTime = DateTime.Now;
             timeLabel.Text = currentTime.ToString("HH:mm:ss");
             dateLabel.Text = currentTime.ToString("dd.MM.yyyy");
+            timeInAlarmLabel.Text = currentTime.ToString("HH:mm:ss");
+            dateInAlarmlabel.Text = currentTime.ToString("dd.MM.yyyy");
 
             // compare current time with alarms list
             for (int i = 0; i < alarmsCheckedListBox.Items.Count; i++)
             {
-                String tempDateAlarm = Convert.ToDateTime(alarmsCheckedListBox.Items[i]).ToString("dd.MM.yyyy HH:mm");
+                MyAlarm tempAlarm = (MyAlarm)(alarmsCheckedListBox.Items[i]);
+                String tempDateAlarm = Convert.ToDateTime(tempAlarm.AlarmTime).ToString("dd.MM.yyyy HH:mm");
                 String tempDateNow = currentTime.ToString("dd.MM.yyyy HH:mm");
                 int compareDateResult = String.Compare(tempDateAlarm, tempDateNow, true);
                 if (compareDateResult == 0)
                 {
-                    Console.WriteLine("Alarm");
                     System.Media.SystemSounds.Beep.Play();
+                    // one notification
+                    if (tempAlarm.IsNotify)
+                    {
+                        notifyAlarm(tempAlarm);
+                        tempAlarm.IsNotify = false;
+                        alarmsCheckedListBox.Items[i] = tempAlarm; 
+                    }
                 }
             }
         }
@@ -91,9 +108,10 @@ namespace AlarmClock
         private void addAlarmButton_Click(object sender, EventArgs e)
         {
             DateTime date = dateTimePickerAlarm.Value;
-
-            alarmsCheckedListBox.Items.Insert(0, date);
-
+            MyAlarm myAlarm = new MyAlarm();
+            myAlarm.AlarmTime = date;
+            myAlarm.Notification = alarmTextBox.Text;
+            alarmsCheckedListBox.Items.Insert(0, myAlarm);
         }
 
         private void dateTimePickerAlarm_ValueChanged(object sender, EventArgs e)
@@ -103,7 +121,7 @@ namespace AlarmClock
 
         private void removeAlarmsButton_Click(object sender, EventArgs e)
         {
-            foreach (var item in alarmsCheckedListBox.CheckedItems.OfType<DateTime>().ToList())
+            foreach (var item in alarmsCheckedListBox.CheckedItems.OfType<MyAlarm>().ToList())
             {
                 alarmsCheckedListBox.Items.Remove(item);
             }
@@ -114,6 +132,29 @@ namespace AlarmClock
             }
         }
 
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            dateTimePickerAlarm.ResetText();
+            alarmTextBox.Text = "";
+        }
 
+        public void notifyAlarm(MyAlarm alarm)
+        {
+            var popupNotifier = new PopupNotifier();
+            popupNotifier.TitleText = "Alarm";
+            popupNotifier.ContentText = alarm.Notification;
+            popupNotifier.IsRightToLeft = false;
+            popupNotifier.Popup();
+        }
+
+        private void tableLayoutPanel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dateLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -37,11 +37,16 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.dateTimePickerAlarm = new System.Windows.Forms.DateTimePicker();
             this.addAlarmButton = new System.Windows.Forms.Button();
+            this.dateTimePickerAlarm = new System.Windows.Forms.DateTimePicker();
+            this.resetButton = new System.Windows.Forms.Button();
+            this.alarmTextBox = new System.Windows.Forms.TextBox();
             this.alarmsCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.removeAlarmsButton = new System.Windows.Forms.Button();
+            this.timeInAlarmLabel = new System.Windows.Forms.Label();
+            this.dateInAlarmlabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanelClock.SuspendLayout();
@@ -50,6 +55,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -83,12 +89,13 @@
             this.tableLayoutPanelClock.ColumnCount = 1;
             this.tableLayoutPanelClock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelClock.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanelClock.Controls.Add(this.tableLayoutPanel6, 0, 1);
             this.tableLayoutPanelClock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelClock.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanelClock.Name = "tableLayoutPanelClock";
             this.tableLayoutPanelClock.RowCount = 2;
-            this.tableLayoutPanelClock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelClock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelClock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.59907F));
+            this.tableLayoutPanelClock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.40093F));
             this.tableLayoutPanelClock.Size = new System.Drawing.Size(770, 429);
             this.tableLayoutPanelClock.TabIndex = 0;
             // 
@@ -97,16 +104,14 @@
             this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.7644F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.2356F));
             this.tableLayoutPanel4.Controls.Add(this.timeLabel, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.dateLabel, 1, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(764, 208);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(764, 284);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
             // timeLabel
@@ -115,24 +120,29 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.timeLabel.AutoSize = true;
-            this.timeLabel.Font = new System.Drawing.Font("Harrington", 100F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.timeLabel.Font = new System.Drawing.Font("Papyrus", 120F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeLabel.Location = new System.Drawing.Point(3, 0);
             this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(526, 208);
+            this.timeLabel.Size = new System.Drawing.Size(758, 284);
             this.timeLabel.TabIndex = 0;
-            this.timeLabel.Text = "timeLabel";
+            this.timeLabel.Text = "13:21:27";
+            this.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.timeLabel.UseCompatibleTextRendering = true;
             // 
             // dateLabel
             // 
-            this.dateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dateLabel.AutoSize = true;
-            this.dateLabel.Font = new System.Drawing.Font("Dubai", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dateLabel.Location = new System.Drawing.Point(568, 163);
+            this.dateLabel.Font = new System.Drawing.Font("Papyrus", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateLabel.Location = new System.Drawing.Point(3, 17);
+            this.dateLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 40);
             this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(193, 45);
+            this.dateLabel.Size = new System.Drawing.Size(758, 76);
             this.dateLabel.TabIndex = 1;
-            this.dateLabel.Text = "dateLabel";
+            this.dateLabel.Text = "06.05.2018";
+            this.dateLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.dateLabel.Click += new System.EventHandler(this.dateLabel_Click);
             // 
             // tabPage2
             // 
@@ -168,28 +178,24 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.dateTimePickerAlarm, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.addAlarmButton, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.timeInAlarmLabel, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.addAlarmButton, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.dateTimePickerAlarm, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.resetButton, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.alarmTextBox, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.dateInAlarmlabel, 0, 5);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowCount = 6;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.7351F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.2649F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 156F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 77F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(313, 423);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // dateTimePickerAlarm
-            // 
-            this.dateTimePickerAlarm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePickerAlarm.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerAlarm.Location = new System.Drawing.Point(30, 30);
-            this.dateTimePickerAlarm.Margin = new System.Windows.Forms.Padding(30, 30, 30, 3);
-            this.dateTimePickerAlarm.Name = "dateTimePickerAlarm";
-            this.dateTimePickerAlarm.Size = new System.Drawing.Size(253, 33);
-            this.dateTimePickerAlarm.TabIndex = 1;
-            this.dateTimePickerAlarm.ValueChanged += new System.EventHandler(this.dateTimePickerAlarm_ValueChanged);
             // 
             // addAlarmButton
             // 
@@ -197,7 +203,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.addAlarmButton.AutoSize = true;
             this.addAlarmButton.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.addAlarmButton.Location = new System.Drawing.Point(50, 214);
+            this.addAlarmButton.Location = new System.Drawing.Point(50, 260);
             this.addAlarmButton.Margin = new System.Windows.Forms.Padding(50, 3, 50, 3);
             this.addAlarmButton.Name = "addAlarmButton";
             this.addAlarmButton.Size = new System.Drawing.Size(213, 40);
@@ -205,6 +211,47 @@
             this.addAlarmButton.Text = "Add alarm";
             this.addAlarmButton.UseVisualStyleBackColor = false;
             this.addAlarmButton.Click += new System.EventHandler(this.addAlarmButton_Click);
+            // 
+            // dateTimePickerAlarm
+            // 
+            this.dateTimePickerAlarm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePickerAlarm.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerAlarm.Location = new System.Drawing.Point(30, 50);
+            this.dateTimePickerAlarm.Margin = new System.Windows.Forms.Padding(30, 10, 30, 3);
+            this.dateTimePickerAlarm.Name = "dateTimePickerAlarm";
+            this.dateTimePickerAlarm.Size = new System.Drawing.Size(253, 33);
+            this.dateTimePickerAlarm.TabIndex = 1;
+            this.dateTimePickerAlarm.ValueChanged += new System.EventHandler(this.dateTimePickerAlarm_ValueChanged);
+            // 
+            // resetButton
+            // 
+            this.resetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.resetButton.AutoSize = true;
+            this.resetButton.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.resetButton.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.resetButton.Location = new System.Drawing.Point(218, 3);
+            this.resetButton.Margin = new System.Windows.Forms.Padding(0, 3, 30, 10);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(65, 27);
+            this.resetButton.TabIndex = 3;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = false;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            // 
+            // alarmTextBox
+            // 
+            this.alarmTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.alarmTextBox.BackColor = System.Drawing.Color.White;
+            this.alarmTextBox.ForeColor = System.Drawing.Color.Black;
+            this.alarmTextBox.Location = new System.Drawing.Point(30, 111);
+            this.alarmTextBox.Margin = new System.Windows.Forms.Padding(30, 10, 30, 3);
+            this.alarmTextBox.Multiline = true;
+            this.alarmTextBox.Name = "alarmTextBox";
+            this.alarmTextBox.Size = new System.Drawing.Size(253, 115);
+            this.alarmTextBox.TabIndex = 4;
+            this.alarmTextBox.Text = "Reminder message";
             // 
             // alarmsCheckedListBox
             // 
@@ -243,11 +290,52 @@
             this.removeAlarmsButton.Location = new System.Drawing.Point(3, 30);
             this.removeAlarmsButton.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
             this.removeAlarmsButton.Name = "removeAlarmsButton";
-            this.removeAlarmsButton.Size = new System.Drawing.Size(120, 40);
+            this.removeAlarmsButton.Size = new System.Drawing.Size(120, 83);
             this.removeAlarmsButton.TabIndex = 0;
-            this.removeAlarmsButton.Text = "Remove";
+            this.removeAlarmsButton.Text = "Remove alarms";
             this.removeAlarmsButton.UseVisualStyleBackColor = false;
             this.removeAlarmsButton.Click += new System.EventHandler(this.removeAlarmsButton_Click);
+            // 
+            // timeInAlarmLabel
+            // 
+            this.timeInAlarmLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.timeInAlarmLabel.AutoSize = true;
+            this.timeInAlarmLabel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeInAlarmLabel.Location = new System.Drawing.Point(3, 334);
+            this.timeInAlarmLabel.Name = "timeInAlarmLabel";
+            this.timeInAlarmLabel.Size = new System.Drawing.Size(307, 26);
+            this.timeInAlarmLabel.TabIndex = 5;
+            this.timeInAlarmLabel.Text = "13:21:27";
+            this.timeInAlarmLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.timeInAlarmLabel.UseCompatibleTextRendering = true;
+            // 
+            // dateInAlarmlabel
+            // 
+            this.dateInAlarmlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateInAlarmlabel.AutoSize = true;
+            this.dateInAlarmlabel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateInAlarmlabel.Location = new System.Drawing.Point(3, 378);
+            this.dateInAlarmlabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 20);
+            this.dateInAlarmlabel.Name = "dateInAlarmlabel";
+            this.dateInAlarmlabel.Size = new System.Drawing.Size(307, 25);
+            this.dateInAlarmlabel.TabIndex = 6;
+            this.dateInAlarmlabel.Text = "06.05.2018";
+            this.dateInAlarmlabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.dateLabel, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 293);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(764, 133);
+            this.tableLayoutPanel6.TabIndex = 4;
             // 
             // ClockForm
             // 
@@ -270,6 +358,8 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -290,6 +380,11 @@
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.TextBox alarmTextBox;
+        private System.Windows.Forms.Label timeInAlarmLabel;
+        private System.Windows.Forms.Label dateInAlarmlabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
     }
 }
 
