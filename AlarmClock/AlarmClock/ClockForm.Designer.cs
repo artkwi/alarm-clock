@@ -42,6 +42,8 @@
             this.alarmsCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.removeAlarmsButton = new System.Windows.Forms.Button();
+            this.resetButton = new System.Windows.Forms.Button();
+            this.alarmTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanelClock.SuspendLayout();
@@ -168,14 +170,19 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.dateTimePickerAlarm, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.addAlarmButton, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.addAlarmButton, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.dateTimePickerAlarm, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.resetButton, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.alarmTextBox, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.70642F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.29358F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 158F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 77F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(313, 423);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -184,8 +191,8 @@
             this.dateTimePickerAlarm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerAlarm.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerAlarm.Location = new System.Drawing.Point(30, 30);
-            this.dateTimePickerAlarm.Margin = new System.Windows.Forms.Padding(30, 30, 30, 3);
+            this.dateTimePickerAlarm.Location = new System.Drawing.Point(30, 71);
+            this.dateTimePickerAlarm.Margin = new System.Windows.Forms.Padding(30, 10, 30, 3);
             this.dateTimePickerAlarm.Name = "dateTimePickerAlarm";
             this.dateTimePickerAlarm.Size = new System.Drawing.Size(253, 33);
             this.dateTimePickerAlarm.TabIndex = 1;
@@ -197,7 +204,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.addAlarmButton.AutoSize = true;
             this.addAlarmButton.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.addAlarmButton.Location = new System.Drawing.Point(50, 214);
+            this.addAlarmButton.Location = new System.Drawing.Point(50, 289);
             this.addAlarmButton.Margin = new System.Windows.Forms.Padding(50, 3, 50, 3);
             this.addAlarmButton.Name = "addAlarmButton";
             this.addAlarmButton.Size = new System.Drawing.Size(213, 40);
@@ -249,6 +256,35 @@
             this.removeAlarmsButton.UseVisualStyleBackColor = false;
             this.removeAlarmsButton.Click += new System.EventHandler(this.removeAlarmsButton_Click);
             // 
+            // resetButton
+            // 
+            this.resetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.resetButton.AutoSize = true;
+            this.resetButton.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.resetButton.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.resetButton.Location = new System.Drawing.Point(182, 22);
+            this.resetButton.Margin = new System.Windows.Forms.Padding(0, 3, 30, 10);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(101, 29);
+            this.resetButton.TabIndex = 3;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = false;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            // 
+            // alarmTextBox
+            // 
+            this.alarmTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.alarmTextBox.BackColor = System.Drawing.Color.Black;
+            this.alarmTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.alarmTextBox.Location = new System.Drawing.Point(30, 138);
+            this.alarmTextBox.Margin = new System.Windows.Forms.Padding(30, 10, 30, 3);
+            this.alarmTextBox.Multiline = true;
+            this.alarmTextBox.Name = "alarmTextBox";
+            this.alarmTextBox.Size = new System.Drawing.Size(253, 115);
+            this.alarmTextBox.TabIndex = 4;
+            this.alarmTextBox.Text = "Alarm";
+            // 
             // ClockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -290,6 +326,8 @@
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.TextBox alarmTextBox;
     }
 }
 

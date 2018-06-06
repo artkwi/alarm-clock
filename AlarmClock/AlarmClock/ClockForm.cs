@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
+using Tulpep.NotificationWindow;
 
 namespace AlarmClock
 {
@@ -83,8 +84,14 @@ namespace AlarmClock
                 int compareDateResult = String.Compare(tempDateAlarm, tempDateNow, true);
                 if (compareDateResult == 0)
                 {
-                    Console.WriteLine("Alarm");
                     System.Media.SystemSounds.Beep.Play();
+                    // one notification
+                    if (tempAlarm.IsNotify)
+                    {
+                        notifyAlarm(tempAlarm);
+                        tempAlarm.IsNotify = false;
+                        alarmsCheckedListBox.Items[i] = tempAlarm; 
+                    }
                 }
             }
         }
@@ -99,7 +106,7 @@ namespace AlarmClock
             DateTime date = dateTimePickerAlarm.Value;
             MyAlarm myAlarm = new MyAlarm();
             myAlarm.AlarmTime = date;
-            Console.WriteLine(myAlarm.AlarmTime);
+            myAlarm.Notification = alarmTextBox.Text;
             alarmsCheckedListBox.Items.Insert(0, myAlarm);
         }
 
@@ -119,6 +126,21 @@ namespace AlarmClock
             {
                 alarmsCheckedListBox.SetItemCheckState(i, CheckState.Unchecked);
             }
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            dateTimePickerAlarm.ResetText();
+            alarmTextBox.Text = "";
+        }
+
+        public void notifyAlarm(MyAlarm alarm)
+        {
+            var popupNotifier = new PopupNotifier();
+            popupNotifier.TitleText = "Alarm";
+            popupNotifier.ContentText = alarm.Notification;
+            popupNotifier.IsRightToLeft = false;
+            popupNotifier.Popup();
         }
     }
 }

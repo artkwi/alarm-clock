@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 
 namespace AlarmClock
 {
-    class MyAlarm
+    public class MyAlarm
     {
         private DateTime alarmTime;
         private String notification;
+        private bool isNotify;
 
         public DateTime AlarmTime { get => alarmTime; set => alarmTime = value; }
         public string Notification { get => notification; set => notification = value; }
+        public bool IsNotify { get => isNotify; set => isNotify = value; }
+
+        public MyAlarm()
+        {
+            notification = "Alarm!";
+            isNotify = true;
+        }
     }
 }
